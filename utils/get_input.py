@@ -81,7 +81,7 @@ def is_in_timeout():
     else:
         raise Exception("LAST_REQ not in environment")
 
-def get_inputs(fpath):
+def get_inputs(fpath, parse=True):
     load_dotenv()
     year, day = get_year_and_day(fpath)
 
@@ -119,7 +119,10 @@ def get_inputs(fpath):
     else:
         test_input = open(os.path.join(parent_input, f'day{int(day):02d}_test.txt')).read()
 
-    return puzzle_input.split('\n'), test_input.split('\n')
+    if parse:
+        return puzzle_input.split('\n'), test_input.split('\n')
+    else:
+        return puzzle_input, test_input
 
 if __name__ == '__main__':
     pass
